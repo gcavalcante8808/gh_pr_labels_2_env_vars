@@ -12,23 +12,28 @@ steps:
   - pip install -r requirements.txt
   - make test-ci COMMIT_SHA=${DRONE_COMMIT_SHA}
 
+- name: Build and send to Docker Hub
+  image: plugins/docker
+  settings:
+    repo: gcavalcante8808/gh-pr-labels-2-env-vars
+    tags:
+      - ${DRONE_COMMIT_SHA}
+    username:
+      from_secret: DOCKER_USERNAME
+    password:
+      from_secret: DOCKER_PASSWORD
+
 - name: release's binaries tests
-  image: gcavalcante8808/dump-gh-pull-labels
+  image: gcavalcante8808/gh_pr_labels_2_env_vars:${DRONE_COMMIT_SHA}
   commands:
-  - apt-get update && apt-get install -y make git binutils
-  - pip install -r requirements.txt
   - make build_and_test_release_binaries
 
 - name: release
-  image: gcavalcante8808/dump-gh-pull-labels
+  image: gcavalcante8808/dump-gh-pull-labels:${DRONE_COMMIT_SHA}
   environment:
     GITHUB_TOKEN:
       from_secret: GHR_TOKEN
   commands:
-  - curl -L https://github.com/tcnksm/ghr/releases/download/v0.12.2/ghr_v0.12.2_linux_amd64.tar.gz -o /tmp/ghr.tar.gz
-  - tar -xzvf /tmp/ghr.tar.gz -C /tmp --strip-components=1
-  - mv /tmp/ghr /usr/local/bin/
-  - chmod +x /usr/local/bin/ghr
   - make release GITHUB_TOKEN=$${GITHUB_TOKEN}
   when:
     branch: master
