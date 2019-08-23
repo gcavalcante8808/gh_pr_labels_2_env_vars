@@ -20,5 +20,5 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY --from=downloader /tmp/ghr /usr/local/bin/ghr
-COPY dump_gh_pull_labels/ .
+COPY labels2env .
 
