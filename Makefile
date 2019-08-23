@@ -7,6 +7,9 @@ test:
     coverage run --source=./src -m pytest src/tests/
     coverage html
 
+test-ci: test
+    codecov --token=$${CODECOV_TOKEN} --commit=${COMMIT_SHA}
+
 release: clear build_and_test_release_binaries
     cd src
     ghr -replace v1.0.0 dist/
@@ -14,10 +17,10 @@ release: clear build_and_test_release_binaries
 
 .ONESHELL: build_and_test_release_binaries
 build_and_test_release_binaries:
-    cd dump_gh_pull_labels
-    pyinstaller -F dump_github_labels_as_env_vars.py
-    dist/dump_github_labels_as_env_vars --help
+    cd labels2env
+    pyinstaller -F labels2env.py
+    dist/labels2env --help
 
 clear:
-    cd dump_gh_pull_labels
+    cd labels2env
     rm -rf dist/ build/
