@@ -15,7 +15,7 @@ steps:
 - name: Build and send to Docker Hub
   image: plugins/docker
   settings:
-    repo: gcavalcante8808/gh-pr-labels-2-env-vars
+    repo: gcavalcante8808/labels2env
     tags:
       - ${DRONE_COMMIT_SHA}
     username:
@@ -24,12 +24,12 @@ steps:
       from_secret: DOCKER_PASSWORD
 
 - name: release's binaries tests
-  image: gcavalcante8808/gh_pr_labels_2_env_vars:${DRONE_COMMIT_SHA}
+  image: gcavalcante8808/labels2env:${DRONE_COMMIT_SHA}
   commands:
   - make build_and_test_release_binaries
 
 - name: release
-  image: gcavalcante8808/dump-gh-pull-labels:${DRONE_COMMIT_SHA}
+  image: gcavalcante8808/labels2env:${DRONE_COMMIT_SHA}
   environment:
     GITHUB_TOKEN:
       from_secret: GHR_TOKEN
