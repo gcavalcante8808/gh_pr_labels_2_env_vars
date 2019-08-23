@@ -1,6 +1,6 @@
 from collections import namedtuple
 
-from labels2env.labels2env import get_supported_labels
+from dump_gh_pull_labels.dump_github_labels_as_env_vars import get_supported_labels
 
 gh_label_interface = namedtuple('Label', 'name')
 
