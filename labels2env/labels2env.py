@@ -37,14 +37,14 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--github-token', type=str, required=True, default=GITHUB_TOKEN)
     parser.add_argument('--github-repo', type=str, required=True, default=GITHUB_REPO)
-    parser.add_argument('--github-pull', type=int, required=True, default=GITHUB_PULL)
+    parser.add_argument('--github-pr-number', type=int, required=True, default=GITHUB_PULL)
     parser.add_argument('--github-label-pattern', type=str, required=False, default=GITHUB_LABEL_PATTERN)
     parser.add_argument('--github-label-separator-pattern', type=str, required=False,
                         default=GITHUB_LABEL_SEPARATOR_PATTERN)
 
     args = parser.parse_args()
 
-    github_labels = get_github_pr_labels(args.github_token, args.github_repo, args.github_pull)
+    github_labels = get_github_pr_labels(args.github_token, args.github_repo, args.github_pr_number)
     supported_labels = get_supported_labels(github_labels, args.github_label_pattern, args.github_label_separator_pattern)
 
     print_supported_labels_as_env_vars(supported_labels)
