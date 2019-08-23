@@ -1,4 +1,7 @@
 [![Build Status](https://cloud.drone.io/api/badges/gcavalcante8808/labels2env/status.svg)](https://cloud.drone.io/gcavalcante8808/labels2env)
+[![codecov](https://codecov.io/gh/gcavalcante8808/labels2env/branch/master/graph/badge.svg)](https://codecov.io/gh/gcavalcante8808/labels2env)
+[![](https://images.microbadger.com/badges/image/gcavalcante8808/labels2env.svg)](https://microbadger.com/images/gcavalcante8808/labels2env "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/gcavalcante8808/labels2env.svg)](https://microbadger.com/images/gcavalcante8808/labels2env "Get your own version badge on microbadger.com")
 
 ### Labels2Env
 
