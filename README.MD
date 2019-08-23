@@ -1,3 +1,5 @@
+[![Build Status](https://cloud.drone.io/api/badges/gcavalcante8808/labels2env/status.svg)](https://cloud.drone.io/gcavalcante8808/labels2env)
+
 ### Labels2Env
 
 Utility to dump and export Github Pull Requests Labels to environment variables.
